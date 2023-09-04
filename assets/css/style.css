@@ -66,3 +66,12 @@ h1{
     left: 50%;
     transform: translate(-50%);
 }
+
+#generate{
+    padding: 0.5rem;
+    margin-top: 1rem;
+}
+
+#max_cells{
+    padding: 0.5rem;
+}

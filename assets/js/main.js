@@ -116,6 +116,6 @@ function generateGrid(cellCounter) {
     
     gridGen.classList.add('d-none'); //Make the button disappear after the function execution
     cellsLimit.classList.add('d-none');
-    console.log(bombs);
+    
     return bombs; 
 }
