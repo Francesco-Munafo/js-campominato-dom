@@ -12,11 +12,13 @@ Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed 
 // Seleziono il pulsante dal documento
 
 const gridGen = document.getElementById('generate');
+let cellsLimit = document.getElementById('max_cells');
 
 // Al click del pulsante invoca la funzione per generare la lista
 
 gridGen.addEventListener('click', function () {
-    generateGrid(100);
+    console.log(cellsLimit.value);
+    generateGrid(Number(cellsLimit.value));
     // Al click del bottone verranno generati degli elementi sul documento, ma al click dell'elemento dovranno "togglare" la classe che cambia il colore dello sfondo
     const cellList = document.querySelectorAll('.cell');
     for (let i = 0; i < cellList.length; i++) {
@@ -24,9 +26,9 @@ gridGen.addEventListener('click', function () {
             this.classList.toggle('active');
             console.log("Hai selezionato la cella n." + (i + 1));
         });
-
+        
     }
-
+    
 });
 
 
@@ -34,14 +36,14 @@ gridGen.addEventListener('click', function () {
 /** ## generateGrid 
  * Generate a grid using the given parameter
  * @param {number} cellCounter Number of cells
- */
+*/
 function generateGrid(cellCounter) {
-
     const domGridElement = document.querySelector('.grid'); //Select dom container
-
+    
     for (let i = 0; i < cellCounter; i++) {
         const domCellElement = document.createElement('div'); //Create a div element
         domCellElement.classList.add('cell'); //Adds "cell" class to div
+        domCellElement.style.width = `calc(100% / ${Math.sqrt(cellsLimit.value)})`
         domGridElement.append(domCellElement); //Append "cell" element to container
         domCellElement.innerHTML = `${[i + 1]}` //Adds cell numbering
 
@@ -49,5 +51,5 @@ function generateGrid(cellCounter) {
     }
 
     gridGen.classList.add('d-none'); //Make the button disappear after the function execution
-
+    cellsLimit.classList.add('d-none');
 }

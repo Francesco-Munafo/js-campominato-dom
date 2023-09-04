@@ -30,7 +30,6 @@ h1{
 
 .cell{
     background-color: rgb(26, 25, 25);
-    width: calc(100% / 10);
     aspect-ratio: 1 / 1;
     border: 2px solid black;
     display: flex;
