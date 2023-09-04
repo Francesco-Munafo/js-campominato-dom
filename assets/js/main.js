@@ -57,6 +57,7 @@ gridGen.addEventListener('click', function () {
 */
 function generateGrid(cellCounter) {
     const domGridElement = document.querySelector('.grid'); //Select dom container
+    let bombs = []
 
     for (let i = 0; i < cellCounter; i++) {
         const domCellElement = document.createElement('div'); //Create a div element
@@ -68,14 +69,19 @@ function generateGrid(cellCounter) {
 
     }
 
-    let bombs = []
     // Genero 16 numeri random che dipendono dalla difficoltà selezionata
     for (let i = 0; i < 16; i++) {
         const bomb = Math.floor(Math.random() * (cellsLimit).value) + 1;
-        bombs.push(bomb);
-        
-        
-    }
+        if (bomb === bombs[i]){
+            console.log('ho trovato un doppione');
+            console.log(bomb);
+            console.log(bombs[i]);
+        } 
+            bombs.push(bomb);
+
+} 
+
+
 
     gridGen.classList.add('d-none'); //Make the button disappear after the function execution
     cellsLimit.classList.add('d-none');
