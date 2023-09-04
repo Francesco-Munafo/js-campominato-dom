@@ -65,6 +65,13 @@ gridGen.addEventListener('click', function () {
                 this.classList.add('active');
                 points += 1;
             }
+            console.log(cellsLimit.value, 'NUMERO CELLE');
+            console.log(bombs.length, 'NUMERO BOMBE');
+            if (points === (cellsLimit.value - bombs.length)){
+                gameOver.classList.add('game_over');
+                gameOver.innerHTML = 'HAI VINTO!'
+                pointsDomEl.innerHTML = 'Il tuo punteggio: ' + points;
+            }
         });
         
         
