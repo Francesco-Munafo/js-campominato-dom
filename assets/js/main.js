@@ -56,8 +56,8 @@ gridGen.addEventListener('click', function () {
  * @param {number} cellCounter Number of cells
 */
 function generateGrid(cellCounter) {
-    const domGridElement = document.querySelector('.grid'); //Select dom container
     let bombs = []
+    const domGridElement = document.querySelector('.grid'); //Select dom container
 
     for (let i = 0; i < cellCounter; i++) {
         const domCellElement = document.createElement('div'); //Create a div element
@@ -72,14 +72,17 @@ function generateGrid(cellCounter) {
     // Genero 16 numeri random che dipendono dalla difficoltà selezionata
     for (let i = 0; i < 16; i++) {
         const bomb = Math.floor(Math.random() * (cellsLimit).value) + 1;
-        if (bomb === bombs[i]){
+
+        if (bombs.includes(bomb)) {
             console.log('ho trovato un doppione');
             console.log(bomb);
-            console.log(bombs[i]);
-        } 
+            i--;
+        } else {
             bombs.push(bomb);
+        }
 
-} 
+
+    }
 
 
 
