@@ -41,7 +41,6 @@ let cellsLimit = document.getElementById('max_cells');
 // Al click del pulsante invoca la funzione per generare la lista
 
 gridGen.addEventListener('click', function () {
-    console.log(cellsLimit.value);
     const bombs = generateGrid(Number(cellsLimit.value));
      
     // Al click del bottone verranno generati degli elementi sul documento, ma al click dell'elemento dovranno "togglare" la classe che cambia il colore dello sfondo
@@ -50,10 +49,9 @@ gridGen.addEventListener('click', function () {
     const pointsDomEl = document.getElementById('points');
     let points = 0
     for (let i = 0; i < cellList.length; i++) {
-        cellList[i].addEventListener('click', function () {
+        cellList[i].addEventListener('click', function selected() {
             console.log("Hai selezionato la cella n." + (i + 1));
             if (bombs.includes(i + 1) ) {
-                console.log('ALLAHUAKBAHR');
                 this.classList.add('bg_red');
                 gameOver.classList.add('game_over');
                 gameOver.innerHTML = 'HAI PERSO!';
@@ -63,15 +61,16 @@ gridGen.addEventListener('click', function () {
 
             } else {
                 this.classList.add('active');
-                points += 1;
+                points++;
+                this.removeEventListener('click', selected) //This prevents user from getting more points if he clicks multiple times on the same cell
             }
-            console.log(cellsLimit.value, 'NUMERO CELLE');
-            console.log(bombs.length, 'NUMERO BOMBE');
+            
             if (points === (cellsLimit.value - bombs.length)){
                 gameOver.classList.add('game_over');
                 gameOver.innerHTML = 'HAI VINTO!'
                 pointsDomEl.innerHTML = 'Il tuo punteggio: ' + points;
             }
+        
         });
         
         
